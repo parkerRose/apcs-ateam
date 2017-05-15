@@ -1,29 +1,28 @@
 import java.util.ArrayList;
 
-public class B_King extends Piece
+public class W_King extends Piece
 {
-    public B_King(String a)
+    public W_King(String a)
     {
         super(a);
     }
     
-    public B_King(int a, int b)
+    public W_King(int a, int b)
     {
         super(a, b);
     }
     
     public boolean isSafeMove(String start, String end, Piece[][] board)
     {
-        // ASSUMES isValidEndSquare() returns true
+        // ASSUMES isValidEndSquare() returns truedfdf
         if(start != null && end != null) {
             for(Piece[] pArr: board) {
                 for(Piece p: pArr) {
-                    if(isAWhitePiece(p)) {
+                    if(isABlackPiece(p)) {
                         for(String str: p.getPossibleMoves(board)) {
                             if(end.equals(str))
                                 return false;
                         }
-                        
                         for(String str: p.getPossibleCaptures(board)) {
                             if(end.equals(str))
                                 return false;
@@ -57,7 +56,7 @@ public class B_King extends Piece
         int[] position = super.convertToChessInt(super.getPosition());
         for(int a = -1; a <= 1; a ++) {
             for(int b = -1; b <= 1; b ++) {
-                if(!(a == 0 && b == 0) && (position[0] + a <= 8 && position[1] + b <= 8 && position[0] + a >= 1 && position[1] + b >= 1) && isAWhitePiece(board[position[0] + a][position[1] + b]) && isSafeMove(super.getPosition(), convertToString(position[0] + a, position[1] + b), board))
+                if(!(a == 0 && b == 0) && (position[0] + a <= 8 && position[1] + b <= 8 && position[0] + a >= 1 && position[1] + b >= 1) && isABlackPiece(board[position[0] + a][position[1] + b]) && isSafeMove(super.getPosition(), convertToString(position[0] + a, position[1] + b), board))
                     allCaptures.add(convertToString(position[0] + a, position[1] + b));
             }
         }

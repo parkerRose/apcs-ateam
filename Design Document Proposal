@@ -1,4 +1,4 @@
-Group members: Vittal, Parker, bBRuce
+Group members: Vittal, Parker
 Chess
 Proposed design of the game
 Classes:
@@ -9,4 +9,3 @@ Positive Test Cases:
 Valid moves
 Negative Test Cases:
 Illegal chess moves
-

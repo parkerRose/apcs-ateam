@@ -17,7 +17,7 @@ public class W_Pawn extends Piece
         ArrayList<String> allPositions = new ArrayList<String>();
         int[] position = super.convertToChessInt(super.getPosition());
         
-        if(position[0] == 7 && board[position[0] - 2][position[1]] == null) {
+        if(position[0] == 7 && board[position[0] - 1][position[1]] == null && board[position[0] - 2][position[1]] == null) {
             allPositions.add(convertToString(position[0] - 2, position[1]));
         }
         
