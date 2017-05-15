@@ -14,7 +14,7 @@ public class W_King extends Piece
     
     public boolean isSafeMove(String start, String end, Piece[][] board)
     {
-        // ASSUMES isValidEndSquare() returns truedfdf
+        // ASSUMES isValidEndSquare() returns true
         if(start != null && end != null) {
             for(Piece[] pArr: board) {
                 for(Piece p: pArr) {
