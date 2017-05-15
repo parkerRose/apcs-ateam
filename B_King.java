@@ -14,46 +14,39 @@ public class B_King extends Piece
     
     public boolean isSafeMove(String start, String end, Piece[][] board)
     {
-        // ASSUME isValidEndSquare() returns true
+        // ASSUMES isValidEndSquare() returns true
         if(start != null && end != null) {
             for(Piece[] pArr: board) {
                 for(Piece p: pArr) {
                     if(isAWhitePiece(p)) {
                         for(String str: p.getPossibleMoves(board)) {
-                            if(end.equals(str) && !start.equals(str))
+                            if(end.equals(str))
                                 return false;
                         }
+                        
                         for(String str: p.getPossibleCaptures(board)) {
-                            if(end.equals(str) && !start.equals(str))
+                            if(end.equals(str))
                                 return false;
                         }
                     }
                 }
             }
+            return true;
         }
-        return true;
+        return false;
+        
     }
     
     public ArrayList<String> getPossibleMoves(Piece[][] board)
     {
         ArrayList<String> allPositions = new ArrayList<String>();
         int[] position = super.convertToChessInt(super.getPosition());
-        if((position[0] <= 7 && position[1] <= 7) && (board[position[0] + 1][position[1] + 1] == null) && isSafeMove(super.getPosition(), convertToString(position[0] + 1, position[1] + 1), board))
-            allPositions.add(convertToString(position[0] + 1, position[1] + 1));
-        if((position[0] <= 7) && (board[position[0] + 1][position[1]] == null) && isSafeMove(super.getPosition(), convertToString(position[0] + 1, position[1] + 1), board))
-            allPositions.add(convertToString(position[0] + 1, position[1]));
-        if((position[0] <= 7 && position[1] >= 2) && (board[position[0] + 1][position[1] - 1] == null) && isSafeMove(super.getPosition(), convertToString(position[0] + 1, position[1] + 1), board))
-            allPositions.add(convertToString(position[0] + 1, position[1] - 1));
-        if((position[1] <= 7) && (board[position[0]][position[1] + 1] == null) && isSafeMove(super.getPosition(), convertToString(position[0] + 1, position[1] + 1), board))
-            allPositions.add(convertToString(position[0], position[1] + 1));
-        if((position[1] >= 2) && (board[position[0]][position[1] - 1] == null) && isSafeMove(super.getPosition(), convertToString(position[0] + 1, position[1] + 1), board))
-            allPositions.add(convertToString(position[0], position[1] - 1));
-        if((position[0] >= 2 && position[1] <= 7) && (board[position[0] - 1][position[1] + 1] == null) && isSafeMove(super.getPosition(), convertToString(position[0] + 1, position[1] + 1), board))
-            allPositions.add(convertToString(position[0] - 1, position[1] + 1));
-        if((position[0] >= 2) && (board[position[0] - 1][position[1]] == null) && isSafeMove(super.getPosition(), convertToString(position[0] + 1, position[1] + 1), board))
-            allPositions.add(convertToString(position[0] - 1, position[1]));
-        if((position[0] >= 2 && position[1] >= 2) && (board[position[0] - 1][position[1] - 1] == null) && isSafeMove(super.getPosition(), convertToString(position[0] + 1, position[1] + 1), board))
-            allPositions.add(convertToString(position[0] - 1, position[1] - 1));
+        for(int a = -1; a <= 1; a ++) {
+            for(int b = -1; b <= 1; b ++) {
+                if(!(a == 0 && b == 0) && (position[0] + a <= 8 && position[1] + b <= 8 && position[0] + a >= 1 && position[1] + b >= 1) && (board[position[0] + a][position[1] + b] == null) && isSafeMove(super.getPosition(), convertToString(position[0] + a, position[1] + b), board))
+                    allPositions.add(convertToString(position[0] + a, position[1] + b));
+            }
+        }
         
         return allPositions;
     }
@@ -62,22 +55,12 @@ public class B_King extends Piece
     {
         ArrayList<String> allCaptures = new ArrayList<String>();
         int[] position = super.convertToChessInt(super.getPosition());
-        if((position[0] <= 7 && position[1] <= 7) && isAWhitePiece(board[position[0] + 1][position[1] + 1]) && isSafeMove(super.getPosition(), convertToString(position[0] + 1, position[1] + 1), board))
-            allCaptures.add(convertToString(position[0] + 1, position[1] + 1));
-        if((position[0] <= 7) && isAWhitePiece(board[position[0] + 1][position[1]]) && isSafeMove(super.getPosition(), convertToString(position[0] + 1, position[1] + 1), board))
-            allCaptures.add(convertToString(position[0] + 1, position[1]));
-        if((position[0] <= 7 && position[1] >= 2) && isAWhitePiece(board[position[0] + 1][position[1] - 1]) && isSafeMove(super.getPosition(), convertToString(position[0] + 1, position[1] + 1), board))
-            allCaptures.add(convertToString(position[0] + 1, position[1] - 1));
-        if((position[1] <= 7) && isAWhitePiece(board[position[0]][position[1] + 1]) && isSafeMove(super.getPosition(), convertToString(position[0] + 1, position[1] + 1), board))
-            allCaptures.add(convertToString(position[0], position[1] + 1));
-        if((position[1] >= 2) && isAWhitePiece(board[position[0]][position[1] - 1]) && isSafeMove(super.getPosition(), convertToString(position[0] + 1, position[1] + 1), board))
-            allCaptures.add(convertToString(position[0], position[1] - 1));
-        if((position[0] >= 2 && position[1] <= 7) && isAWhitePiece(board[position[0] - 1][position[1] + 1]) && isSafeMove(super.getPosition(), convertToString(position[0] + 1, position[1] + 1), board))
-            allCaptures.add(convertToString(position[0] - 1, position[1] + 1));
-        if((position[0] >= 2) && isAWhitePiece(board[position[0] - 1][position[1]]) && isSafeMove(super.getPosition(), convertToString(position[0] + 1, position[1] + 1), board))
-            allCaptures.add(convertToString(position[0] - 1, position[1]));
-        if((position[0] >= 2 && position[1] >= 2) && isAWhitePiece(board[position[0] - 1][position[1] - 1]) && isSafeMove(super.getPosition(), convertToString(position[0] + 1, position[1] + 1), board))
-            allCaptures.add(convertToString(position[0] - 1, position[1] - 1));
+        for(int a = -1; a <= 1; a ++) {
+            for(int b = -1; b <= 1; b ++) {
+                if(!(a == 0 && b == 0) && (position[0] + a <= 8 && position[1] + b <= 8 && position[0] + a >= 1 && position[1] + b >= 1) && isAWhitePiece(board[position[0] + a][position[1] + b]) && isSafeMove(super.getPosition(), convertToString(position[0] + a, position[1] + b), board))
+                    allCaptures.add(convertToString(position[0] + a, position[1] + b));
+            }
+        }
         
         return allCaptures;
     }
