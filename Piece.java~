@@ -4,11 +4,9 @@ public abstract class Piece
     
 {
     private String position;
-    
     private enum Color {
         WHITE, BLACK
     }
-    
     public Piece(String a)
     {
         position = a;
