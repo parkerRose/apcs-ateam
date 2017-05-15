@@ -35,11 +35,11 @@ public class Runner
         
         while (!gameIsOver) {
             
-            System.out.println(b.getPlayer() + "'s turn. Please enter the start square of the piece you would like to move in the format \"(Row#)(Column#)\" (An example is A1):");
+            System.out.println(b.getPlayer() + "'s turn. Please enter the start square of the piece you would like to move in the format \"(Column#)(Row#)\" (An example is A1):");
             inputStart = scan.nextLine();
             
             while (!b.isValidStartSquare(inputStart)) {
-                System.out.println("An invalid start square was entered. " + b.getPlayer() + "'s turn. Please enter a valid start square in the format \"(Row#)(Column#)\" (An example is A1):");
+                System.out.println("An invalid start square was entered. " + b.getPlayer() + "'s turn. Please enter a valid start square in the format \"(Column#)(Row#)\" (An example is A1):");
                 inputStart = scan.nextLine();
             }
             

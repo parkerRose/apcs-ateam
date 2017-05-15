@@ -23,6 +23,7 @@ public class W_King extends Piece
                             if(end.equals(str))
                                 return false;
                         }
+                        
                         for(String str: p.getPossibleCaptures(board)) {
                             if(end.equals(str))
                                 return false;
@@ -33,7 +34,6 @@ public class W_King extends Piece
             return true;
         }
         return false;
-        
     }
     
     public ArrayList<String> getPossibleMoves(Piece[][] board)
