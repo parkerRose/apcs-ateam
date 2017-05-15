@@ -4,17 +4,20 @@ public abstract class Piece
     
 {
     private String position;
-    private enum Color {
+    public enum Color {
         WHITE, BLACK
     }
-    public Piece(String a)
+    Color side;
+    public Piece(String a, Color c)
     {
         position = a;
+        side = c;
     }
     
-    public Piece(int a, int b)
+    public Piece(int a, int b, Color c)
     {
         position = convertToString(a, b);
+        side = c;
     }
     
     public String getPosition()
