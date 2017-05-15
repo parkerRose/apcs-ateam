@@ -6,6 +6,7 @@
   * X     A pawn can capture a piece diagonally
   * Check
   * Legal moves for the King (cannot move to a square that is attacked)
+  * 
   */
 
 /** Optional Objectives:
@@ -81,30 +82,6 @@ public class GameBoard
         int[] input = Piece.convertToChessInt(a);
         return board[input[0]][input[1]].getPossibleCaptures(board);
     }
-    
-    /* public static boolean isAWhitePiece(String square)
-     {
-     return isAWhitePiece(board[Piece.convertToChessInt(square)[0]][Piece.convertToChessInt(square)[1]]);
-     }
-     
-     public static boolean isABlackPiece(String square)
-     {
-     return isABlackPiece(board[Piece.convertToChessInt(square)[0]][Piece.convertToChessInt(square)[1]]);
-     }
-     
-     public static boolean isAWhitePiece(int c, int b)
-     {
-     return isAWhitePiece(Piece.convertToString(c, b));
-     }
-     
-     public static boolean isABlackPiece(int c, int b)
-     {
-     return isABlackPiece(Piece.convertToString(c, b));
-     }
-     
-     */
-    
-    
     
     public boolean isValidStartSquare(String input)
     {
