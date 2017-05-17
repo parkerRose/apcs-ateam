@@ -52,7 +52,7 @@ public class W_Bishop extends Piece
         return allPositions;
     }
     
-    public ArrayList<String> getPossibleCaptures(Piece[][] board)
+    public ArrayList<String> getWPossibleCaptures(Piece[][] board)
     {
         ArrayList<String> allCaptures = new ArrayList<String>();
         int[] position = super.convertToChessInt(super.getPosition());

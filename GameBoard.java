@@ -41,7 +41,7 @@ public class GameBoard
     public GameBoard()
     {
         for(int c = 1; c < board.length; c++) {
-            board[2][c] = new B_Pawn(2,c);
+            board[2][c] = new Pawn(2,c, Piece.BLACK);
             board[7][c] = new W_Pawn(7,c);
         }
         board[1][1] = new B_Rook(1,1);

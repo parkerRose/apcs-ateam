@@ -2,14 +2,14 @@ import java.util.ArrayList;
 
 public class B_Bishop extends Piece 
 {
-    public B_Bishop(String a)
+    public B_Bishop(String a, Color c)
     {
-        super(a);
+        super(a, c);
     }
     
-    public B_Bishop(int a, int b)
+    public B_Bishop(int a, int b, Color c)
     {
-        super(a, b);
+        super(a, b, c);
     }
     
     public ArrayList<String> getPossibleMoves(Piece[][] board)
@@ -67,7 +67,7 @@ public class B_Bishop extends Piece
             }
         }
         
-        if ((1 <= position[0] + j && position[0] + j <= 8) && (1 <= position[1] + j && position[1] + j <= 8) && isAWhitePiece(board[position[0] + j][position[1] + j]))
+        if ((1 <= position[0] + j && position[0] + j <= 8) && (1 <= position[1] + j && position[1] + j <= 8) && isAWhitePiece(board[position[0] + j][position[1] + j],board))
             allCaptures.add(convertToString(position[0] + j, position[1] + j));
         
         
@@ -82,7 +82,7 @@ public class B_Bishop extends Piece
             }
         }
         
-        if ((1 <= position[0] + j && position[0] + j <= 8) && (1 <= position[1] + j && position[1] + j <= 8) && isAWhitePiece(board[position[0] + j][position[1] + j]))
+        if ((1 <= position[0] + j && position[0] + j <= 8) && (1 <= position[1] + j && position[1] + j <= 8) && isAWhitePiece(board[position[0] + j][position[1] + j],this))
             allCaptures.add(convertToString(position[0] + j, position[1] + j));
         
         
@@ -98,7 +98,7 @@ public class B_Bishop extends Piece
             }
         }
         
-        if ((1 <= position[0] + j && position[0] + j <= 8) && (1 <= position[1] - j && position[1] - j <= 8) && isAWhitePiece(board[position[0] + j][position[1] - j]))
+        if ((1 <= position[0] + j && position[0] + j <= 8) && (1 <= position[1] - j && position[1] - j <= 8) && isAWhitePiece(board[position[0] + j][position[1] - j],this))
             allCaptures.add(convertToString(position[0] + j, position[1] + j));
         
         
@@ -113,7 +113,7 @@ public class B_Bishop extends Piece
             }
         }
         
-        if ((1 <= position[0] + j && position[0] + j <= 8) && (1 <= position[1] - j && position[1] - j <= 8) && isAWhitePiece(board[position[0] + j][position[1] - j]))
+        if ((1 <= position[0] + j && position[0] + j <= 8) && (1 <= position[1] - j && position[1] - j <= 8) && isAWhitePiece(board[position[0] + j][position[1] - j],this))
             allCaptures.add(convertToString(position[0] + j, position[1] + j));
         
         return allCaptures;

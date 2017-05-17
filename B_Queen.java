@@ -2,14 +2,14 @@ import java.util.ArrayList;
 
 public class B_Queen extends Piece
 {
-    public B_Queen(String a)
+    public B_Queen(String a, Color c)
     {
-        super(a);
+        super(a, c);
     }
     
-    public B_Queen(int a, int b)
+    public B_Queen(int a, int b, Color c)
     {
-        super(a, b);
+        super(a, b, c);
     }
     
     public ArrayList<String> getPossibleMoves(Piece[][] board)

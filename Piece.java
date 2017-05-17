@@ -7,7 +7,7 @@ public abstract class Piece
     public enum Color {
         WHITE, BLACK
     }
-    Color side;
+    private Color side;
     public Piece(String a, Color c)
     {
         position = a;
@@ -19,12 +19,24 @@ public abstract class Piece
         position = convertToString(a, b);
         side = c;
     }
-    
+   
     public String getPosition()
     {
         return position;
     }
-    
+    public Color getColor (){
+        return side;
+    }
+    public boolean isOppositeSide (Piece a, Piece b){
+        boolean out = false;
+        if(b.getColor() == BLACK && a.getColor() == WHITE){
+            out = true;
+        }
+        if(b.getColor() == WHITE && a.getColor() == BLACK){
+            out = true;
+        }
+        return out;
+    }
     public void setNewPosition(int a, int b)
     {
         position = convertToString(a, b);
@@ -32,17 +44,15 @@ public abstract class Piece
     
     public boolean isAWhitePiece(Piece a)
     {
-        if (a instanceof W_King || a instanceof W_Queen || a instanceof W_Rook || a instanceof W_Bishop || a instanceof W_Knight || a instanceof W_Pawn)
-            return true;
-        return false;
+        return side == WHITE;
+       
     }
     
     public boolean isABlackPiece(Piece a)
     {
-        if (a instanceof B_King || a instanceof B_Queen || a instanceof B_Rook || a instanceof B_Bishop || a instanceof B_Knight || a instanceof B_Pawn)
-            return true;
-        return false;
-    }
+        return side == BLACK;
+    } 
+    //public boolean isOppositeSide(
     
     public abstract ArrayList<String> getPossibleMoves(Piece[][] board);
     

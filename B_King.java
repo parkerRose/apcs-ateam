@@ -2,14 +2,14 @@ import java.util.ArrayList;
 
 public class B_King extends Piece
 {
-    public B_King(String a)
+    public B_King(String a, Color c)
     {
-        super(a);
+        super(a, c);
     }
     
-    public B_King(int a, int b)
+    public B_King(int a, int b, Color c)
     {
-        super(a, b);
+        super(a, b, c);
     }
     
     public boolean isSafeMove(String start, String end, Piece[][] board)
