@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 
-public class B_Rook extends Piece
+public class W_Rook extends Piece
 {
-    public B_Rook(String a)
+    public W_Rook(String a)
     {
         super(a);
     }
-    public B_Rook(int a, int b)
+        public W_Rook(int a, int b)
     {
         super(a, b);
     }
@@ -56,40 +56,43 @@ public class B_Rook extends Piece
         ArrayList<String> allCaptures = new ArrayList<String>();
         int[] position = super.convertToChessInt(super.getPosition());
         
+        boolean leaveLoop = false;
         int j = 0;
         for(int i = position[1] + 1; i <= 8; i++) {
-            if(board[position[0]][i] == null) {
+            if((board[position[0]][i] == null) && !leaveLoop) {
             } else {
+                leaveLoop = true;
                 j = i;
-                break;
             }
         }
         
-        if(j != 0 && isAWhitePiece(board[position[0]][j]))
+        if(j != 0 && isABlackPiece(board[position[0]][j]))
             allCaptures.add(convertToString(position[0], j));
         
         
         
+        leaveLoop = false;
         j = 0;
         for(int i = position[1] - 1; i >= 1; i--) {
-            if(board[position[0]][i] == null) {
+            if((board[position[0]][i] == null) && !leaveLoop) {
             } else {
+                leaveLoop = true;
                 j = i;
-                break;
             }
         }
         
-        if(j != 0 && isAWhitePiece(board[position[0]][j]))
+        if(j != 0 && isABlackPiece(board[position[0]][j]))
             allCaptures.add(convertToString(position[0], j));
         
         
         
+        leaveLoop = false;
         j = 0;
         for(int i = position[0] + 1; i <= 8; i++) {
-            if(board[i][position[1]] == null) {
+            if((board[i][position[1]] == null) && !leaveLoop) {
             } else {
+                leaveLoop = true;
                 j = i;
-                break;
             }
         }
         
@@ -98,12 +101,13 @@ public class B_Rook extends Piece
         
         
         
+        leaveLoop = false;
         j = 0;
         for(int i = position[0] - 1; i >= 1; i--) {
-            if(board[i][position[1]] == null) {
+            if((board[i][position[1]] == null) && !leaveLoop) {
             } else {
+                leaveLoop = true;
                 j = i;
-                break;
             }
         }
         
