@@ -49,10 +49,9 @@ public class B_Bishop extends Piece
                 leaveLoop = true;
         }
         
-        ArrayList captures = getPossibleCaptures(board);
-        for(Object obj: captures) {
-            String str = (String)obj;
-            allPositions.add(str);
+        ArrayList<String> captures = getPossibleCaptures(board);
+        for(int i = 0; i < captures.size(); i++) {
+            allPositions.add(captures.get(i));
         }
         
         return allPositions;

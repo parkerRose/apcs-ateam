@@ -34,6 +34,11 @@ public class B_Knight extends Piece
         if((position[0] >= 2 && position[1] <= 6) && (board[position[0] - 1][position[1] + 2] == null))
             allPositions.add(convertToString(position[0] - 1, position[1] + 2));
         
+        ArrayList<String> captures = getPossibleCaptures(board);
+        for(int i = 0; i < captures.size(); i++) {
+            allPositions.add(captures.get(i));
+        }
+        
         return allPositions;
     }
     

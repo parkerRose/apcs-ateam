@@ -47,6 +47,11 @@ public class B_King extends Piece
             }
         }
         
+        ArrayList<String> captures = getPossibleCaptures(board);
+        for(int i = 0; i < captures.size(); i++) {
+            allPositions.add(captures.get(i));
+        }
+        
         return allPositions;
     }
     

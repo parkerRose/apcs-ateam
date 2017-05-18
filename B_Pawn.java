@@ -24,6 +24,11 @@ public class B_Pawn extends Piece
         if(position[0] <= 6 && board[position[0] + 1][position[1]] == null)
             allPositions.add(convertToString(position[0] + 1, position[1]));
         
+        ArrayList<String> captures = getPossibleCaptures(board);
+        for(int i = 0; i < captures.size(); i++) {
+            allPositions.add(captures.get(i));
+        }
+        
         return allPositions;
     }
     

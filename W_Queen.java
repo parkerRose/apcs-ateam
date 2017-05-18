@@ -85,6 +85,11 @@ public class W_Queen extends Piece
                 leaveLoop = true;
         }
         
+        ArrayList<String> captures = getPossibleCaptures(board);
+        for(int i = 0; i < captures.size(); i++) {
+            allPositions.add(captures.get(i));
+        }
+        
         return allPositions;
     }
     
@@ -92,14 +97,13 @@ public class W_Queen extends Piece
     {
         ArrayList<String> allCaptures = new ArrayList<String>();
         int[] position = super.convertToChessInt(super.getPosition());
-        
-        boolean leaveLoop = false;
+
         int j = 0;
         for(int i = 1; i < 8; i++) {
-            if((1 <= position[0] + i && position[0] + i <= 8) && (1 <= position[1] + i && position[1] + i <= 8) && (board[position[0] + i][position[1] + i] == null) && !leaveLoop) {
+            if((1 <= position[0] + i && position[0] + i <= 8) && (1 <= position[1] + i && position[1] + i <= 8) && (board[position[0] + i][position[1] + i] == null)) {
             } else {
-                leaveLoop = true;
                 j = i;
+                break;
             }
         }
         
@@ -108,13 +112,12 @@ public class W_Queen extends Piece
         
         
         
-        leaveLoop = false;
         j = 0;
         for(int i = -1; i > -8; i--) {
-            if((1 <= position[0] + i && position[0] + i <= 8) && (1 <= position[1] + i && position[1] + i <= 8) && (board[position[0] + i][position[1] + i] == null) && !leaveLoop) {
+            if((1 <= position[0] + i && position[0] + i <= 8) && (1 <= position[1] + i && position[1] + i <= 8) && (board[position[0] + i][position[1] + i] == null)) {
             } else {
-                leaveLoop = true;
                 j = i;
+                break;
             }
         }
         
@@ -124,13 +127,12 @@ public class W_Queen extends Piece
         
         
         
-        leaveLoop = false;
         j = 0;
         for(int i = 1; i < 8; i++) {
-            if((1 <= position[0] + i && position[0] + i <= 8) && (1 <= position[1] - i && position[1] - i <= 8) && (board[position[0] + i][position[1] - i] == null && !leaveLoop)) {
+            if((1 <= position[0] + i && position[0] + i <= 8) && (1 <= position[1] - i && position[1] - i <= 8) && (board[position[0] + i][position[1] - i] == null)) {
             } else {
-                leaveLoop = true;
                 j = i;
+                break;
             }
         }
         
@@ -139,13 +141,12 @@ public class W_Queen extends Piece
         
         
         
-        leaveLoop = false;
         j = 0;
         for(int i = -1; i > -8; i--) {
-            if((1 <= position[0] + i && position[0] + i <= 8) && (1 <= position[1] - i && position[1] - i <= 8) && (board[position[0] + i][position[1] - i] == null) && !leaveLoop) {
+            if((1 <= position[0] + i && position[0] + i <= 8) && (1 <= position[1] - i && position[1] - i <= 8) && (board[position[0] + i][position[1] - i] == null)) {
             } else {
-                leaveLoop = true;
                 j = i;
+                break;
             }
         }
         
@@ -156,13 +157,12 @@ public class W_Queen extends Piece
         
         
         
-        leaveLoop = false;
         j = 0;
         for(int i = position[1] + 1; i <= 8; i++) {
-            if((board[position[0]][i] == null) && !leaveLoop) {
+            if(board[position[0]][i] == null) {
             } else {
-                leaveLoop = true;
                 j = i;
+                break;
             }
         }
         
@@ -171,13 +171,12 @@ public class W_Queen extends Piece
         
         
         
-        leaveLoop = false;
         j = 0;
         for(int i = position[1] - 1; i >= 1; i--) {
-            if((board[position[0]][i] == null) && !leaveLoop) {
+            if(board[position[0]][i] == null) {
             } else {
-                leaveLoop = true;
                 j = i;
+                break;
             }
         }
         
@@ -186,13 +185,12 @@ public class W_Queen extends Piece
         
         
         
-        leaveLoop = false;
         j = 0;
         for(int i = position[0] + 1; i <= 8; i++) {
-            if((board[i][position[1]] == null) && !leaveLoop) {
+            if(board[i][position[1]] == null) {
             } else {
-                leaveLoop = true;
                 j = i;
+                break;
             }
         }
         
@@ -201,13 +199,12 @@ public class W_Queen extends Piece
         
         
         
-        leaveLoop = false;
         j = 0;
         for(int i = position[0] - 1; i >= 1; i--) {
-            if((board[i][position[1]] == null) && !leaveLoop) {
+            if(board[i][position[1]] == null) {
             } else {
-                leaveLoop = true;
                 j = i;
+                break;
             }
         }
         

@@ -48,6 +48,11 @@ public class W_Rook extends Piece
                 leaveLoop = true;
         }
         
+        ArrayList<String> captures = getPossibleCaptures(board);
+        for(int i = 0; i < captures.size(); i++) {
+            allPositions.add(captures.get(i));
+        }
+        
         return allPositions;
     }
     
