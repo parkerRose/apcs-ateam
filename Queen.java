@@ -1,20 +1,57 @@
-import java.util.*;
-public class Bishop extends Piece{
-    public Bishop(String a, Color side)
+import java.util.ArrayList;
+public class Queen extends Piece{
+  public Queen(String a, Color c)
     {
-        super(a, side);
+        super(a, c);
     }
     
-    public Bishop(int a, int b, Color side)
+    public Queen(int a, int b, Color c)
     {
-        super(a, b, side);
+        super(a, b, c);
     }
+    
     public ArrayList<String> getPossibleMoves(Piece[][] board)
     {
         ArrayList<String> allPositions = new ArrayList<String>();
         int[] position = super.convertToChessInt(super.getPosition());
         
         boolean leaveLoop = false;
+        for(int i = position[1] + 1; i <= 8; i++) {
+            if((board[position[0]][i] == null) && !leaveLoop)
+                allPositions.add(convertToString(position[0], i));
+            else
+                leaveLoop = true;
+        }
+        
+        leaveLoop = false;
+        for(int i = position[1] - 1; i >= 1; i--) {
+            if((board[position[0]][i] == null) && !leaveLoop)
+                allPositions.add(convertToString(position[0], i));
+            else
+                leaveLoop = true;
+        }
+        
+        leaveLoop = false;
+        for(int i = position[0] + 1; i <= 8; i++) {
+            if((board[i][position[1]] == null) && !leaveLoop)
+                allPositions.add(convertToString(i, position[1]));
+            else
+                leaveLoop = true;
+        }
+        
+        leaveLoop = false;
+        for(int i = position[0] - 1; i >= 1; i--) {
+            if((board[i][position[1]] == null) && !leaveLoop)
+                allPositions.add(convertToString(i, position[1]));
+            else
+                leaveLoop = true;
+        }
+        
+        
+        
+        
+        
+        leaveLoop = false;
         for(int i = 1; i < 8; i++) {
             if((1 <= position[0] + i && position[0] + i <= 8) && (1 <= position[1] + i && position[1] + i <= 8) && (board[position[0] + i][position[1] + i] == null) && !leaveLoop)
                 allPositions.add(convertToString(position[0] + i, position[1] + i));
@@ -48,6 +85,7 @@ public class Bishop extends Piece{
         
         return allPositions;
     }
+    
     public ArrayList<String> getPossibleCaptures(Piece[][] board)
     {
         ArrayList<String> allCaptures = new ArrayList<String>();
@@ -111,6 +149,68 @@ public class Bishop extends Piece{
         
         if ((1 <= position[0] + j && position[0] + j <= 8) && (1 <= position[1] - j && position[1] - j <= 8) && isOppositeSide(board[position[0] + j][position[1] - j],this))
             allCaptures.add(convertToString(position[0] + j, position[1] + j));
+        
+        
+        
+        
+        
+        leaveLoop = false;
+        j = 0;
+        for(int i = position[1] + 1; i <= 8; i++) {
+            if((board[position[0]][i] == null) && !leaveLoop) {
+            } else {
+                leaveLoop = true;
+                j = i;
+            }
+        }
+        
+        if(j != 0 && isOppositeSide(board[position[0]][j],this))
+            allCaptures.add(convertToString(position[0], j));
+        
+        
+        
+        leaveLoop = false;
+        j = 0;
+        for(int i = position[1] - 1; i >= 1; i--) {
+            if((board[position[0]][i] == null) && !leaveLoop) {
+            } else {
+                leaveLoop = true;
+                j = i;
+            }
+        }
+        
+        if(j != 0 && isOppositeSide(board[position[0]][j],this))
+            allCaptures.add(convertToString(position[0], j));
+        
+        
+        
+        leaveLoop = false;
+        j = 0;
+        for(int i = position[0] + 1; i <= 8; i++) {
+            if((board[i][position[1]] == null) && !leaveLoop) {
+            } else {
+                leaveLoop = true;
+                j = i;
+            }
+        }
+        
+        if(j != 0 && isABlackPiece(board[j][position[1]]))
+            allCaptures.add(convertToString(j, position[1]));
+        
+        
+        
+        leaveLoop = false;
+        j = 0;
+        for(int i = position[0] - 1; i >= 1; i--) {
+            if((board[i][position[1]] == null) && !leaveLoop) {
+            } else {
+                leaveLoop = true;
+                j = i;
+            }
+        }
+        
+        if(j != 0 && isABlackPiece(board[j][position[1]]))
+            allCaptures.add(convertToString(j, position[1]));
         
         return allCaptures;
     }

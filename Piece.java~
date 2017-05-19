@@ -29,10 +29,10 @@ public abstract class Piece
     }
     public boolean isOppositeSide (Piece a, Piece b){
         boolean out = false;
-        if(b.getColor() == Color.BLACK && a.getColor() == Color.WHITE){
+        if(b.getColor() == BLACK && a.getColor() == WHITE){
             out = true;
         }
-        if(b.getColor() == Color.WHITE && a.getColor() == Color.BLACK){
+        if(b.getColor() == WHITE && a.getColor() == BLACK){
             out = true;
         }
         return out;
@@ -44,13 +44,13 @@ public abstract class Piece
     
     public boolean isAWhitePiece(Piece a)
     {
-        return side == Color.WHITE;
+        return side == WHITE;
        
     }
     
     public boolean isABlackPiece(Piece a)
     {
-        return side == Color.BLACK;
+        return side == BLACK;
     } 
     //public boolean isOppositeSide(
     

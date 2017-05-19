@@ -1,12 +1,11 @@
 import java.util.ArrayList;
-
-public class B_Rook extends Piece
-{
-    public B_Rook(String a, Color c)
+public class Rook extends Piece{
+ 
+    public Rook(String a, Color c)
     {
         super(a, c);
     }
-    public B_Rook(int a, int b, Color c)
+    public Rook(int a, int b, Color c)
     {
         super(a, b, c);
     }
@@ -66,7 +65,7 @@ public class B_Rook extends Piece
             }
         }
         
-        if(j != 0 && isAWhitePiece(board[position[0]][j]))
+        if(j != 0 && isOppositeSide(board[position[0]][j],this))
             allCaptures.add(convertToString(position[0], j));
         
         
@@ -81,7 +80,7 @@ public class B_Rook extends Piece
             }
         }
         
-        if(j != 0 && isAWhitePiece(board[position[0]][j]))
+        if(j != 0 && isOppositeSide(board[position[0]][j],this))
             allCaptures.add(convertToString(position[0], j));
         
         
@@ -116,4 +115,4 @@ public class B_Rook extends Piece
         
         return allCaptures;
     }
-}
+ }

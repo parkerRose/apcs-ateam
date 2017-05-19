@@ -22,7 +22,6 @@ public class GameBoard
 {
     private Piece[][] board = new Piece[9][9];
     private int movesCount;
-   
     
     public String getPlayer() {
         if (movesCount % 2 == 0)
@@ -42,25 +41,25 @@ public class GameBoard
     public GameBoard()
     {
         for(int c = 1; c < board.length; c++) {
-            board[2][c] = new Pawn(2,c,Piece.Color.BLACK);
-            board[7][c] = new Pawn(7,c,Piece.Color.WHITE);
+            board[2][c] = new Pawn(2,c, Piece.BLACK);
+            board[7][c] = new W_Pawn(7,c);
         }
-        board[1][1] = new Rook(1,1,Piece.Color.BLACK);
-        board[1][8] = new Rook(1,8,Piece.Color.BLACK);
-        board[8][1] = new Rook(8,1,Piece.Color.WHITE);
-        board[8][8] = new Rook(8,8,Piece.Color.WHITE);
-        board[1][2] = new Knight(1,2,Piece.Color.BLACK);
-        board[1][7] = new Knight(1,7,Piece.Color.BLACK);
-        board[8][2] = new Knight(8,2,Piece.Color.WHITE);
-        board[8][7] = new Knight(8,7,Piece.Color.WHITE);
-        board[1][3] = new Bishop(1,3,Piece.Color.BLACK);
-        board[1][6] = new Bishop(1,6,Piece.Color.BLACK);
-        board[8][3] = new Bishop(8,3,Piece.Color.WHITE);
-        board[8][6] = new Bishop(8,6,Piece.Color.WHITE);
-        board[1][4] = new Queen(1,4,Piece.Color.BLACK);
-        board[8][4] = new Queen(8,4,Piece.Color.WHITE);
-        board[1][5] = new King(1,5,Piece.Color.BLACK);
-        board[8][5] = new King(8,5,Piece.Color.WHITE);
+        board[1][1] = new B_Rook(1,1);
+        board[1][8] = new B_Rook(1,8);
+        board[8][1] = new W_Rook(8,1);
+        board[8][8] = new W_Rook(8,8);
+        board[1][2] = new B_Knight(1,2);
+        board[1][7] = new B_Knight(1,7);
+        board[8][2] = new W_Knight(8,2);
+        board[8][7] = new W_Knight(8,7);
+        board[1][3] = new B_Bishop(1,3);
+        board[1][6] = new B_Bishop(1,6);
+        board[8][3] = new W_Bishop(8,3);
+        board[8][6] = new W_Bishop(8,6);
+        board[1][4] = new B_Queen(1,4);
+        board[8][4] = new W_Queen(8,4);
+        board[1][5] = new B_King(1,5);
+        board[8][5] = new W_King(8,5);
     }
     
     public boolean isInRange(String input) {
@@ -114,11 +113,11 @@ public class GameBoard
             arrInput = Piece.convertToChessInt(input);
             Piece a = board[arrInput[0]][arrInput[1]];
             
-            if((this.getPlayer().equals("White"))&&((a instanceof King) || (a instanceof Queen) || (a instanceof Rook) || (a instanceof Bishop) || (a instanceof Knight) || (a instanceof Pawn))){
+            if((this.getPlayer().equals("White"))&&((a instanceof W_King) || (a instanceof W_Queen) || (a instanceof W_Rook) || (a instanceof W_Bishop) || (a instanceof W_Knight) || (a instanceof W_Pawn))){
                 return true;
             }
             
-            if((this.getPlayer().equals("Black"))&&((a instanceof King) || (a instanceof Queen) || (a instanceof Rook) || (a instanceof Bishop) || (a instanceof Knight) || (a instanceof Pawn))){
+            if((this.getPlayer().equals("Black"))&&((a instanceof B_King) || (a instanceof B_Queen) || (a instanceof B_Rook) || (a instanceof B_Bishop) || (a instanceof B_Knight) || (a instanceof B_Pawn))){
                 return true;
             }
         }
@@ -147,30 +146,30 @@ public class GameBoard
             Piece a = board[Piece.convertToChessInt(start)[0]][Piece.convertToChessInt(start)[1]];
             int b = Piece.convertToChessInt(end)[0];
             int c = Piece.convertToChessInt(end)[1];
-            if (a instanceof King && a.getColor() == Piece.Color.BLACK)
-                board[b][c] = new King (b, c,Piece.Color.BLACK);
-            if (a instanceof Queen && a.getColor() == Piece.Color.BLACK)
-                board[b][c] = new Queen (b, c,Piece.Color.BLACK);
-            if (a instanceof Rook && a.getColor() == Piece.Color.BLACK)
-                board[b][c] = new Rook (b, c,Piece.Color.BLACK);
-            if (a instanceof Bishop && a.getColor() == Piece.Color.BLACK)
-                board[b][c] = new Bishop (b, c,Piece.Color.BLACK);
-            if (a instanceof Knight && a.getColor() == Piece.Color.BLACK)
-                board[b][c] = new Knight (b, c,Piece.Color.BLACK);
-            if (a instanceof Pawn && a.getColor() == Piece.Color.BLACK)
-                board[b][c] = new Pawn (b, c,Piece.Color.BLACK);
-            if (a instanceof King && a.getColor() == Piece.Color.WHITE)
-                board[b][c] = new King (b, c,Piece.Color.WHITE);
-            if (a instanceof Queen && a.getColor() == Piece.Color.WHITE)
-                board[b][c] = new Queen (b, c,Piece.Color.WHITE);
-            if (a instanceof Rook && a.getColor() == Piece.Color.WHITE)
-                board[b][c] = new Rook (b, c,Piece.Color.WHITE);
-            if (a instanceof Bishop && a.getColor() == Piece.Color.WHITE)
-                board[b][c] = new Bishop (b, c,Piece.Color.WHITE);
-            if (a instanceof Knight && a.getColor() == Piece.Color.WHITE)
-                board[b][c] = new Knight (b, c,Piece.Color.WHITE);
-            if (a instanceof Pawn && a.getColor() == Piece.Color.WHITE)
-                board[b][c] = new Pawn (b, c,Piece.Color.WHITE);
+            if (a instanceof B_King)
+                board[b][c] = new B_King (b, c);
+            if (a instanceof B_Queen)
+                board[b][c] = new B_Queen (b, c);
+            if (a instanceof B_Rook)
+                board[b][c] = new B_Rook (b, c);
+            if (a instanceof B_Bishop)
+                board[b][c] = new B_Bishop (b, c);
+            if (a instanceof B_Knight)
+                board[b][c] = new B_Knight (b, c);
+            if (a instanceof B_Pawn)
+                board[b][c] = new B_Pawn (b, c);
+            if (a instanceof W_King)
+                board[b][c] = new W_King (b, c);
+            if (a instanceof W_Queen)
+                board[b][c] = new W_Queen (b, c);
+            if (a instanceof W_Rook)
+                board[b][c] = new W_Rook (b, c);
+            if (a instanceof W_Bishop)
+                board[b][c] = new W_Bishop (b, c);
+            if (a instanceof W_Knight)
+                board[b][c] = new W_Knight (b, c);
+            if (a instanceof W_Pawn)
+                board[b][c] = new W_Pawn (b, c);
             
             board[Piece.convertToChessInt(start)[0]][Piece.convertToChessInt(start)[1]] = null;
         }
@@ -191,29 +190,29 @@ public class GameBoard
                     else
                         add = "   ";
                 }
-                if (board[r][c] instanceof King && board[r][c].getColor() == Piece.Color.WHITE)
+                if (board[r][c] instanceof W_King)
                     add = "W_K";
-                if (board[r][c] instanceof Queen && board[r][c].getColor() == Piece.Color.WHITE)
+                if (board[r][c] instanceof W_Queen)
                     add = "W_Q";
-                if (board[r][c] instanceof Rook && board[r][c].getColor() == Piece.Color.WHITE)
+                if (board[r][c] instanceof W_Rook)
                     add = "W_R";
-                if (board[r][c] instanceof Bishop && board[r][c].getColor() == Piece.Color.WHITE)
+                if (board[r][c] instanceof W_Bishop)
                     add = "W_B";
-                if (board[r][c] instanceof Knight && board[r][c].getColor() == Piece.Color.WHITE)
+                if (board[r][c] instanceof W_Knight)
                     add = "W_N";
-                if (board[r][c] instanceof Pawn && board[r][c].getColor() == Piece.Color.WHITE)
+                if (board[r][c] instanceof W_Pawn)
                     add = "W_P";
-                if (board[r][c] instanceof King && board[r][c].getColor() == Piece.Color.BLACK)
+                if (board[r][c] instanceof B_King)
                     add = "B_K";
-                if (board[r][c] instanceof Queen && board[r][c].getColor() == Piece.Color.BLACK)
+                if (board[r][c] instanceof B_Queen)
                     add = "B_Q";
-                if (board[r][c] instanceof Rook && board[r][c].getColor() == Piece.Color.BLACK)
+                if (board[r][c] instanceof B_Rook)
                     add = "B_R";
-                if (board[r][c] instanceof Bishop && board[r][c].getColor() == Piece.Color.BLACK)
+                if (board[r][c] instanceof B_Bishop)
                     add = "B_B";
-                if (board[r][c] instanceof Knight && board[r][c].getColor() == Piece.Color.BLACK)
+                if (board[r][c] instanceof B_Knight)
                     add = "B_N";
-                if (board[r][c] instanceof Pawn && board[r][c].getColor() == Piece.Color.BLACK)
+                if (board[r][c] instanceof B_Pawn)
                     add = "B_P";
                 s += add + " | ";
             }

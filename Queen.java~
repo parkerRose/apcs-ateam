@@ -1,13 +1,10 @@
-import java.util.ArrayList;
-
-public class B_Queen extends Piece
-{
-    public B_Queen(String a, Color c)
+public class Queen extends Piece{
+  public Queen(String a, Color c)
     {
         super(a, c);
     }
     
-    public B_Queen(int a, int b, Color c)
+    public Queen(int a, int b, Color c)
     {
         super(a, b, c);
     }
@@ -103,7 +100,7 @@ public class B_Queen extends Piece
             }
         }
         
-        if ((1 <= position[0] + j && position[0] + j <= 8) && (1 <= position[1] + j && position[1] + j <= 8) && isAWhitePiece(board[position[0] + j][position[1] + j]))
+        if ((1 <= position[0] + j && position[0] + j <= 8) && (1 <= position[1] + j && position[1] + j <= 8) && isOppositeSide(board[position[0] + j][position[1] + j]))
             allCaptures.add(convertToString(position[0] + j, position[1] + j));
         
         
@@ -118,7 +115,7 @@ public class B_Queen extends Piece
             }
         }
         
-        if ((1 <= position[0] + j && position[0] + j <= 8) && (1 <= position[1] + j && position[1] + j <= 8) && isAWhitePiece(board[position[0] + j][position[1] + j]))
+        if ((1 <= position[0] + j && position[0] + j <= 8) && (1 <= position[1] + j && position[1] + j <= 8) && isOppositeSide(board[position[0] + j][position[1] + j]))
             allCaptures.add(convertToString(position[0] + j, position[1] + j));
         
         
@@ -134,7 +131,7 @@ public class B_Queen extends Piece
             }
         }
         
-        if ((1 <= position[0] + j && position[0] + j <= 8) && (1 <= position[1] - j && position[1] - j <= 8) && isAWhitePiece(board[position[0] + j][position[1] - j]))
+        if ((1 <= position[0] + j && position[0] + j <= 8) && (1 <= position[1] - j && position[1] - j <= 8) && isOppositeSide(board[position[0] + j][position[1] - j]))
             allCaptures.add(convertToString(position[0] + j, position[1] + j));
         
         
@@ -149,7 +146,7 @@ public class B_Queen extends Piece
             }
         }
         
-        if ((1 <= position[0] + j && position[0] + j <= 8) && (1 <= position[1] - j && position[1] - j <= 8) && isAWhitePiece(board[position[0] + j][position[1] - j]))
+        if ((1 <= position[0] + j && position[0] + j <= 8) && (1 <= position[1] - j && position[1] - j <= 8) && isOppositeSide(board[position[0] + j][position[1] - j]))
             allCaptures.add(convertToString(position[0] + j, position[1] + j));
         
         
@@ -166,7 +163,7 @@ public class B_Queen extends Piece
             }
         }
         
-        if(j != 0 && isAWhitePiece(board[position[0]][j]))
+        if(j != 0 && isOppositeSide(board[position[0]][j]))
             allCaptures.add(convertToString(position[0], j));
         
         
@@ -181,7 +178,7 @@ public class B_Queen extends Piece
             }
         }
         
-        if(j != 0 && isAWhitePiece(board[position[0]][j]))
+        if(j != 0 && isOppositeSide(board[position[0]][j]))
             allCaptures.add(convertToString(position[0], j));
         
         

@@ -1,13 +1,11 @@
 import java.util.ArrayList;
-
-public class B_King extends Piece
-{
-    public B_King(String a, Color c)
+public class King extends Piece{
+  public King(String a, Color c)
     {
         super(a, c);
     }
     
-    public B_King(int a, int b, Color c)
+    public King(int a, int b, Color c)
     {
         super(a, b, c);
     }
@@ -18,7 +16,7 @@ public class B_King extends Piece
         if(start != null && end != null) {
             for(Piece[] pArr: board) {
                 for(Piece p: pArr) {
-                    if(isAWhitePiece(p)) {
+                    if(isOppositeSide(p,this)) {
                         for(String str: p.getPossibleMoves(board)) {
                             if(end.equals(str))
                                 return false;
@@ -57,7 +55,7 @@ public class B_King extends Piece
         int[] position = super.convertToChessInt(super.getPosition());
         for(int a = -1; a <= 1; a ++) {
             for(int b = -1; b <= 1; b ++) {
-                if(!(a == 0 && b == 0) && (position[0] + a <= 8 && position[1] + b <= 8 && position[0] + a >= 1 && position[1] + b >= 1) && isAWhitePiece(board[position[0] + a][position[1] + b]) && isSafeMove(super.getPosition(), convertToString(position[0] + a, position[1] + b), board))
+                if(!(a == 0 && b == 0) && (position[0] + a <= 8 && position[1] + b <= 8 && position[0] + a >= 1 && position[1] + b >= 1) && isOppositeSide(board[position[0] + a][position[1] + b],(Piece)this) && isSafeMove(super.getPosition(), convertToString(position[0] + a, position[1] + b), board))
                     allCaptures.add(convertToString(position[0] + a, position[1] + b));
             }
         }
@@ -65,3 +63,4 @@ public class B_King extends Piece
         return allCaptures;
     }
 }
+  

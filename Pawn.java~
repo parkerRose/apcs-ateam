@@ -1,13 +1,10 @@
-import java.util.ArrayList;
-
-public class B_Pawn extends Piece
-{
-    public B_Pawn(String a, Color c)
+public class Pawn extends Piece{
+  public Pawn(String a, Color c)
     {
         super(a, c);
     }
     
-    public B_Pawn(int a, int b, Color c)
+    public Pawn(int a, int b, Color c)
     {
         super(a, b, c);
     }
@@ -32,14 +29,13 @@ public class B_Pawn extends Piece
         ArrayList<String> allCaptures = new ArrayList<String>();
         int[] position = super.convertToChessInt(super.getPosition());
         
-        if(position[0] <= 6 && isAWhitePiece(board[position[0] + 1][position[1] + 1])) {
+        if(position[0] <= 6 && isOppositeSide(board[position[0] + 1][position[1] + 1],this)) {
             allCaptures.add(convertToString(position[0] + 1, position[1] + 1));
         }
         
-        if(position[0] <= 6 && isAWhitePiece(board[position[0] + 1][position[1] - 1])) {
+        if(position[0] <= 6 && isOppositeSide(board[position[0] + 1][position[1] - 1],this)) {
             allCaptures.add(convertToString(position[0] + 1, position[1] - 1));
         }
         
         return allCaptures;
     }
-}
