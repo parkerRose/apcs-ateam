@@ -137,7 +137,7 @@ public class B_Queen extends Piece
         }
         
         if ((1 <= position[0] + j && position[0] + j <= 8) && (1 <= position[1] - j && position[1] - j <= 8) && isAWhitePiece(board[position[0] + j][position[1] - j]))
-            allCaptures.add(convertToString(position[0] + j, position[1] + j));
+            allCaptures.add(convertToString(position[0] + j, position[1] - j));
         
         
         
@@ -151,7 +151,7 @@ public class B_Queen extends Piece
         }
         
         if ((1 <= position[0] + j && position[0] + j <= 8) && (1 <= position[1] - j && position[1] - j <= 8) && isAWhitePiece(board[position[0] + j][position[1] - j]))
-            allCaptures.add(convertToString(position[0] + j, position[1] + j));
+            allCaptures.add(convertToString(position[0] + j, position[1] - j));
         
         
         

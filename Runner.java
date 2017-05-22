@@ -36,21 +36,23 @@ public class Runner
         while (!gameIsOver) {
             
             System.out.println(b.getPlayer() + "'s turn. Please enter the start square of the piece you would like to move in the format \"(Column#)(Row#)\" (An example is A1):");
-            inputStart = scan.nextLine();
+            inputStart = scan.nextLine().toUpperCase();
             
             while (!b.isValidStartSquare(inputStart)) {
                 System.out.println("An invalid start square was entered. " + b.getPlayer() + "'s turn. Please enter a valid start square in the format \"(Column#)(Row#)\" (An example is A1):");
-                inputStart = scan.nextLine();
+                inputStart = scan.nextLine().toUpperCase();
             }
             
-            if(!(printArr(b.getAllGBMoves(inputStart)).equals("none") && printArr(b.getAllGBCaptures(inputStart)).equals("none"))) {
+            if(!(printArr(b.getAllGBMoves(inputStart)).equals("none"))) {
                 System.out.println("The possible end positions for this piece are " + printArr(b.getAllGBMoves(inputStart)) + ". The possible captures are " + printArr(b.getAllGBCaptures(inputStart)) + ". Please choose enter one of these possible end positions below:");
-                inputEnd = scan.nextLine();
+                inputEnd = scan.nextLine().toUpperCase();
                 while (!b.isValidEndSquare(inputStart, inputEnd)) {
                     System.out.println("An invalid end square was entered. " + b.getPlayer() + "'s turn. The possible end positions for this piece are " + printArr(b.getAllGBMoves(inputStart)) + ". The possible captures are: " + printArr(b.getAllGBCaptures(inputStart)) + ". Please choose enter one of these possible end positions below:");
-                    inputEnd = scan.nextLine();
+                    inputEnd = scan.nextLine().toUpperCase();
                 }
                 b.makeMove(inputStart, inputEnd);
+                if(!b.GBisInCheck().equals("Neither"))
+                    System.out.println(b.GBisInCheck() + " is in check!");
                 System.out.println(b);
                 b.increaseMoves();
             } else {

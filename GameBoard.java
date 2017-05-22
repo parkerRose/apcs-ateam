@@ -108,13 +108,20 @@ public class GameBoard
                 if(a.equals(end.toUpperCase()))
                     return true;
             }
-            for(String a: getAllGBCaptures(start)) {
-                if(a.equals(end.toUpperCase()))
-                    return true;
-            }
-            
         }
         return false;
+    }
+    
+    public String GBisInCheck() {
+        for(Piece[] pArr : board) {
+            for(Piece a: pArr) {
+                if(a instanceof W_King && ((W_King)a).isInCheck(board))
+                    return "White";
+                if(a instanceof B_King && ((B_King)a).isInCheck(board))
+                    return "Black";
+            }
+        }
+        return "Neither";
     }
     
     public void makeMove(String start, String end)

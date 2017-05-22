@@ -11,7 +11,7 @@ public abstract class Piece
     
     public Piece(String a)
     {
-        position = a;
+        position = a.toUpperCase();
     }
     
     public Piece(int a, int b)
@@ -28,6 +28,8 @@ public abstract class Piece
     {
         position = convertToString(a, b);
     }
+    
+    
     
     public boolean isAWhitePiece(Piece a)
     {
