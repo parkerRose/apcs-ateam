@@ -15,35 +15,52 @@ public class W_King extends Piece
     public boolean isSafeMove(String end, Piece[][] board)
     {
         //ASSUMES isValidEndSquare() returns true
-        if(super.getPosition() != null) {
-            for(Piece[] pArr: board) {
-                for(Piece p: pArr) {
-                    if(isABlackPiece(p)) {
+        boolean isSafe = true;
+        board[convertToChessInt(super.getPosition())[0]][convertToChessInt(super.getPosition())[1]] = null;
+        for(Piece[] pArr: board) {
+            for(Piece p: pArr) {
+                if(isABlackPiece(p) && !(p instanceof B_King)) {
+                    if (p instanceof B_Pawn) {
+                        for(String str: ((B_Pawn)p).getSpecialPossibleCaptures(board)) {
+                            if(end.toUpperCase().equals(str)) {
+                                isSafe = false;
+                            }
+                        }
+                    } else {
                         for(String str: p.getPossibleMoves(board)) {
-                            if(end.toUpperCase().equals(str))
-                                return false;
+                            if(end.toUpperCase().equals(str)) {
+                                isSafe = false;
+                            }
                         }
                     }
                 }
             }
-            return true;
         }
-        return false;
+        board[convertToChessInt(super.getPosition())[0]][convertToChessInt(super.getPosition())[1]] = new W_King(convertToChessInt(super.getPosition())[0], convertToChessInt(super.getPosition())[1]);
+        return isSafe;
     }
     
     public boolean isInCheck(Piece[][] board)
     {
+        boolean isInCheck = false;
         for(Piece[] pArr: board) {
             for(Piece p: pArr) {
-                if(isABlackPiece(p)) {
-                    for(String str: p.getPossibleMoves(board)) {
-                        if(super.getPosition().equals(str))
-                            return true;
+                if(isABlackPiece(p) && !(p instanceof B_King)) {
+                    if(p instanceof B_Pawn) {
+                        for(String str: p.getPossibleCaptures(board)) {
+                            if(super.getPosition().equals(str))
+                                isInCheck = true;
+                        }
+                    } else {
+                        for(String str: p.getPossibleMoves(board)) {
+                            if(super.getPosition().equals(str))
+                                isInCheck = true;
+                        }
                     }
                 }
             }
         }
-        return false;
+        return isInCheck;
     }
     
     public ArrayList<String> getPossibleMoves(Piece[][] board)

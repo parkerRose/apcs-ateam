@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.lang.Math;
 
 public class W_Knight extends Piece
 {
@@ -17,11 +18,14 @@ public class W_Knight extends Piece
         ArrayList<String> allPositions = new ArrayList<String>();
         int[] position = super.convertToChessInt(super.getPosition());
         
+        int j;
         for(int i = -2; i <= 2; i++) {
-            for(int j = -2; j <= 2; j++) {
-                if((i!= 0 && j != 0) && (position[0] + i >= 1 && position[0] + i <= 8 && position[1] + j >= 1 && position[1] + j <= 8) && (board[position[0] + i][position[1] + j] == null))
-            allPositions.add(convertToString(position[0] + i, position[1] + j));
-            }
+            j = 3 - Math.abs(i);
+            if(i!= 0 && (position[0] + i >= 1 && position[0] + i <= 8 && position[1] + j >= 1 && position[1] + j <= 8) && (board[position[0] + i][position[1] + j] == null))
+                allPositions.add(convertToString(position[0] + i, position[1] + j));
+            j = -j;
+            if(i!= 0 && (position[0] + i >= 1 && position[0] + i <= 8 && position[1] + j >= 1 && position[1] + j <= 8) && (board[position[0] + i][position[1] + j] == null))
+                allPositions.add(convertToString(position[0] + i, position[1] + j));
         }
         
         
@@ -38,11 +42,14 @@ public class W_Knight extends Piece
         ArrayList<String> allCaptures = new ArrayList<String>();
         int[] position = super.convertToChessInt(super.getPosition());
         
+        int j;
         for(int i = -2; i <= 2; i++) {
-            for(int j = -2; j <= 2; j++) {
-                if((i!= 0 && j != 0) && (position[0] + i >= 1 && position[0] + i <= 8 && position[1] + j >= 1 && position[1] + j <= 8) && isABlackPiece(board[position[0] + i][position[1] + j]))
-            allCaptures.add(convertToString(position[0] + i, position[1] + j));
-            }
+            j = 3 - Math.abs(i);
+            if(i!= 0 && (position[0] + i >= 1 && position[0] + i <= 8 && position[1] + j >= 1 && position[1] + j <= 8) && isABlackPiece(board[position[0] + i][position[1] + j]))
+                allCaptures.add(convertToString(position[0] + i, position[1] + j));
+            j = -j;
+            if(i!= 0 && (position[0] + i >= 1 && position[0] + i <= 8 && position[1] + j >= 1 && position[1] + j <= 8) && isABlackPiece(board[position[0] + i][position[1] + j]))
+                allCaptures.add(convertToString(position[0] + i, position[1] + j));
         }
         
         return allCaptures;

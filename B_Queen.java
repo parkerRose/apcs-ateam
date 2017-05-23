@@ -97,7 +97,7 @@ public class B_Queen extends Piece
     {
         ArrayList<String> allCaptures = new ArrayList<String>();
         int[] position = super.convertToChessInt(super.getPosition());
-
+        
         int j = 0;
         for(int i = 1; i < 8; i++) {
             if((1 <= position[0] + i && position[0] + i <= 8) && (1 <= position[1] + i && position[1] + i <= 8) && (board[position[0] + i][position[1] + i] == null)) {

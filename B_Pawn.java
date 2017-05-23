@@ -37,14 +37,30 @@ public class B_Pawn extends Piece
         ArrayList<String> allCaptures = new ArrayList<String>();
         int[] position = super.convertToChessInt(super.getPosition());
         
-        if(position[0] <= 6 && isAWhitePiece(board[position[0] + 1][position[1] + 1])) {
+        if(position[0] <= 6 && position[1] <= 7 && isAWhitePiece(board[position[0] + 1][position[1] + 1])) {
             allCaptures.add(convertToString(position[0] + 1, position[1] + 1));
         }
         
-        if(position[0] <= 6 && isAWhitePiece(board[position[0] + 1][position[1] - 1])) {
+        if(position[0] <= 6 && position[1] >= 2 && isAWhitePiece(board[position[0] + 1][position[1] - 1])) {
             allCaptures.add(convertToString(position[0] + 1, position[1] - 1));
         }
         
         return allCaptures;
+    }
+    
+    public ArrayList<String> getSpecialPossibleCaptures(Piece[][] board)
+    {
+        ArrayList<String> allSpecialCaptures = new ArrayList<String>();
+        int[] position = super.convertToChessInt(super.getPosition());
+        
+        if(position[0] <= 7 && position[1] <= 7) {
+            allSpecialCaptures.add(convertToString(position[0] + 1, position[1] + 1));
+        }
+        
+        if(position[0] <= 7 && position[1] >= 2) {
+            allSpecialCaptures.add(convertToString(position[0] + 1, position[1] - 1));
+        }
+        
+        return allSpecialCaptures;
     }
 }

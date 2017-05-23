@@ -4,9 +4,8 @@
   * X     Pieces can only move to a square already not occupied
   * X     Jumping over a piece is not allowed (except for a knight)
   * X     A pawn can capture a piece diagonally
-  * Check
-  * Legal moves for the King (cannot move to a square that is attacked)
-  * 
+  * X Check
+  * X Legal moves for the King (cannot move to a square that is attacked)
   */
 
 /** Optional Objectives:
@@ -18,6 +17,7 @@
   */
 
 import java.util.ArrayList;
+import java.lang.Math;
 
 public class GameBoard
 {
@@ -68,6 +68,28 @@ public class GameBoard
             String s = input.substring(0,1).toUpperCase();
             return input.length() == 2 && (s.equals("A") || s.equals("B") || s.equals("C") || s.equals("D") || s.equals("E") || s.equals("F") || s.equals("G") || s.equals("H")) && ('1' <= input.charAt(1) && input.charAt(1) <= '8');
         }
+        return false;
+    }
+    
+    public boolean areKingsTouching()
+    {
+        Piece bKing = null;
+        Piece wKing = null;
+        for(Piece[] pArr: board) {
+            for(Piece p: pArr) {
+                if(p instanceof W_King) {
+                    wKing = p;
+                }
+                if(p instanceof B_King) {
+                    bKing = p;
+                }
+            }
+        }
+        int wKingPos[] = Piece.convertToChessInt(wKing.getPosition());
+        int bKingPos[] = Piece.convertToChessInt(bKing.getPosition());
+        
+        if(Math.abs(wKingPos[0] - bKingPos[0]) <= 1 && Math.abs(wKingPos[1] - bKingPos[1]) <= 1)
+            return true;
         return false;
     }
     

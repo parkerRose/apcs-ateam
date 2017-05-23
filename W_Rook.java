@@ -6,7 +6,7 @@ public class W_Rook extends Piece
     {
         super(a);
     }
-        public W_Rook(int a, int b)
+    public W_Rook(int a, int b)
     {
         super(a, b);
     }

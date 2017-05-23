@@ -39,7 +39,7 @@ public class Runner
             inputStart = scan.nextLine().toUpperCase();
             
             while (!b.isValidStartSquare(inputStart)) {
-                System.out.println("An invalid start square was entered. " + b.getPlayer() + "'s turn. Please enter a valid start square in the format \"(Column#)(Row#)\" (An example is A1):");
+                System.err.println("An invalid start square was entered. " + b.getPlayer() + "'s turn. Please enter a valid start square in the format \"(Column#)(Row#)\" (An example is A1):");
                 inputStart = scan.nextLine().toUpperCase();
             }
             
@@ -47,17 +47,20 @@ public class Runner
                 System.out.println("The possible end positions for this piece are " + printArr(b.getAllGBMoves(inputStart)) + ". The possible captures are " + printArr(b.getAllGBCaptures(inputStart)) + ". Please choose enter one of these possible end positions below:");
                 inputEnd = scan.nextLine().toUpperCase();
                 while (!b.isValidEndSquare(inputStart, inputEnd)) {
-                    System.out.println("An invalid end square was entered. " + b.getPlayer() + "'s turn. The possible end positions for this piece are " + printArr(b.getAllGBMoves(inputStart)) + ". The possible captures are: " + printArr(b.getAllGBCaptures(inputStart)) + ". Please choose enter one of these possible end positions below:");
+                    System.err.println("An invalid end square was entered. " + b.getPlayer() + "'s turn. The possible end positions for this piece are " + printArr(b.getAllGBMoves(inputStart)) + ". The possible captures are: " + printArr(b.getAllGBCaptures(inputStart)) + ". Please choose enter one of these possible end positions below:");
                     inputEnd = scan.nextLine().toUpperCase();
                 }
                 b.makeMove(inputStart, inputEnd);
-                if(!b.GBisInCheck().equals("Neither"))
-                    System.out.println(b.GBisInCheck() + " is in check!");
                 System.out.println(b);
+                if(b.areKingsTouching())
+                    System.err.println("ERROR: Kings are touching -> Reset Game");
+                if(!b.GBisInCheck().equals("Neither"))
+                    System.err.println(b.GBisInCheck() + " is in check!");
                 b.increaseMoves();
             } else {
-                System.out.println("Sorry, no valid end positions for this piece exist.");
+                System.err.println("Sorry, no valid end positions for this piece exist.");
             }
         }
     }
+
 }

@@ -98,7 +98,7 @@ public class B_Rook extends Piece
             }
         }
         
-        if(j != 0 && isABlackPiece(board[j][position[1]]))
+        if(j != 0 && isAWhitePiece(board[j][position[1]]))
             allCaptures.add(convertToString(j, position[1]));
         
         
@@ -112,7 +112,7 @@ public class B_Rook extends Piece
             }
         }
         
-        if(j != 0 && isABlackPiece(board[j][position[1]]))
+        if(j != 0 && isAWhitePiece(board[j][position[1]]))
             allCaptures.add(convertToString(j, position[1]));
         
         return allCaptures;

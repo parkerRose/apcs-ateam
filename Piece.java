@@ -5,10 +5,6 @@ public abstract class Piece
 {
     private String position;
     
-    private enum Color {
-        WHITE, BLACK
-    }
-    
     public Piece(String a)
     {
         position = a.toUpperCase();
@@ -123,81 +119,4 @@ public abstract class Piece
         }
         return null;
     }
-    
-    /*
-     public static int[] convertToInt(String a)
-     {
-     if(a.length() == 2) {
-     int[] pos = new int[2];
-     String first = a.substring(0,1);
-     char second = a.charAt(1);
-     if(second == '1')
-     pos[1] = 1;
-     if(second == '2')
-     pos[1] = 2;
-     if(second == '3')
-     pos[1] = 3;
-     if(second == '4')
-     pos[1] = 4;
-     if(second == '5')
-     pos[1] = 5;
-     if(second == '6')
-     pos[1] = 6;
-     if(second == '7')
-     pos[1] = 7;
-     if(second == '8')
-     pos[1] = 8;
-     
-     if(first.toUpperCase().equals("A"))
-     pos[0] = 1;
-     if(first.toUpperCase().equals("B"))
-     pos[0] = 2;
-     if(first.toUpperCase().equals("C"))
-     pos[0] = 3;
-     if(first.toUpperCase().equals("D"))
-     pos[0] = 4;
-     if(first.toUpperCase().equals("E"))
-     pos[0] = 5;
-     if(first.toUpperCase().equals("F"))
-     pos[0] = 6;
-     if(first.toUpperCase().equals("G"))
-     pos[0] = 7;
-     if(first.toUpperCase().equals("H"))
-     pos[0] = 8;
-     
-     return pos;
-     }
-     
-     return null;
-     }
-     
-     public static String convertToString(int[] a)
-     {
-     if(a.length == 2)
-     {
-     String pos = "";
-     if(a[0] == 1)
-     pos += "A";
-     if(a[0] == 2)
-     pos += "B";
-     if(a[0] == 3)
-     pos += "C";
-     if(a[0] == 4)
-     pos += "D";
-     if(a[0] == 5)
-     pos += "E";
-     if(a[0] == 6)
-     pos += "F";
-     if(a[0] == 7)
-     pos += "G";
-     if(a[0] == 8)
-     pos += "H";
-     
-     pos += a[1];
-     
-     return pos;
-     }
-     return null;
-     }
-     */
 }
